@@ -1,6 +1,3 @@
-
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import junit.framework.TestCase;
@@ -112,7 +109,7 @@ public class StudentAndCourseTest extends TestCase {
 			int c2 = (int)(Math.random() * 120 + 1);
 			double g2 = Math.round(Math.random() * 4000) / 1000.0;
 			ss.submitGrade(g2, c2);
-			Student bb = s.createLegacy(ss);
+			Student bb = s.createLegacy(s, ss);
 			assertTrue("create baby not setting name properly", bb.getName().contains(s.getName()) && bb.getName().contains(ss.getName()));
 			assertEquals("create baby not setting gpa properly", (g + g2) / 2, bb.getGPA(), 0.01);
 			assertEquals("create baby not setting credits properly", bb.getCredits(), Math.max(c, c2));
@@ -181,7 +178,6 @@ public class StudentAndCourseTest extends TestCase {
 
 				assertEquals("seats not updated after adding a student", s - j - 1, c.getRemainingSeats());
 			}
-
 			//Try to add students, even though the class is full.
 			for (int j = 0; j < s; j++) {
 				String aa =  "" + (Math.random() * 5000);
